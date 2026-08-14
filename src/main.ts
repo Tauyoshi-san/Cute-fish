@@ -1,2 +1,2 @@
-import Phaser from 'phaser';import './style.css';import {AquariumScene} from './AquariumScene';import './audio';import './ui';import './fishOverlay';import './decorationOverlay';import './careCycle';
+import Phaser from 'phaser';import './style.css';import {AquariumScene} from './AquariumScene';import './audio';import './ui';import './fishOverlay';import './decorationOverlay';import './careCycle';import './progression';
 new Phaser.Game({type:Phaser.AUTO,parent:'game',backgroundColor:'#073f4b',scale:{mode:Phaser.Scale.RESIZE,width:1280,height:720},render:{antialias:true,pixelArt:false},scene:[AquariumScene],transparent:false});
