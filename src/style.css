@@ -222,3 +222,7 @@ body{background:radial-gradient(circle at 48% 15%,#fffdf4 0 24%,#f8eed8 70%,#ead
 /* Bubble signature clustered tightly around the wordmark. */
 .machine-title{padding:5px 15px 5px 2px;background:radial-gradient(circle at 67% 10%,#effff8 0 2px,#79bdb2 2.5px 3px,transparent 3.5px),radial-gradient(circle at 80% 88%,#effff8 0 1.5px,#79bdb2 2px 2.5px,transparent 3px),radial-gradient(circle at 94% 36%,#effff8 0 1px,#79bdb2 1.5px 2px,transparent 2.5px);background-repeat:no-repeat}.machine-title b:before{right:-5px;top:-3px}.machine-title b:after{right:-9px;top:5px}
 @media(max-width:820px){.machine-title{padding-right:9px;background:radial-gradient(circle at 93% 20%,#effff8 0 1.5px,#79bdb2 2px 2.5px,transparent 3px);background-repeat:no-repeat}}
+
+/* Float the hood and service base just inside the cabinet's perimeter groove. */
+@media(min-width:821px){#machine-light{top:13px;height:45px}#machine-base{bottom:12px;height:34px}}
+@media(max-width:820px){#machine-light{top:7px;height:35px}}
