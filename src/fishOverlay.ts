@@ -4,13 +4,27 @@ import {fishAsset} from './fishAssets';
 import {playSfx} from './audio';
 
 const layer = document.querySelector<HTMLDivElement>('#fish-overlay')!;
+const cameraStage = document.querySelector<HTMLElement>('#camera-stage')!;
 const bubbleLayer = document.querySelector<HTMLDivElement>('.fx-bubbles')!;
 const app = document.querySelector<HTMLElement>('#app')!;
 const cinematic = document.querySelector<HTMLElement>('#evolution-cinematic')!;
-type Mode='cruise'|'dash'|'rest'|'explore';
+type Mode='cruise'|'dash'|'rest'|'explore'|'called';
 type Mood='happy'|'normal'|'hungry'|'grumpy'|'poor-water';
 type Motion={el:HTMLButtonElement;fishId:string;species:string;x:number;y:number;tx:number;ty:number;vx:number;vy:number;dir:1|-1;mode:Mode;until:number;phase:number;mood?:Mood;nextEmotion?:number};
 const motions=new Map<string,Motion>();
+
+cameraStage.addEventListener('pointerdown',event=>{
+  if(evolutionBusy||document.querySelector('.decor-layer.is-editing'))return;
+  const target=event.target as HTMLElement;
+  if(target.closest('.swimmer,.tank-decor,#dirt-overlay button'))return;
+  const tank=cameraStage.getBoundingClientRect(),clickX=event.clientX,clickY=event.clientY;
+  const facing=[...motions.values()].filter(m=>{const box=m.el.getBoundingClientRect(),centerX=box.left+box.width/2;return(clickX-centerX)*m.dir>0});
+  const chosen=facing.sort((a,b)=>{const aa=a.el.getBoundingClientRect(),bb=b.el.getBoundingClientRect(),ad=Math.hypot(clickX-(aa.left+aa.width/2),clickY-(aa.top+aa.height*.42)),bd=Math.hypot(clickX-(bb.left+bb.width/2),clickY-(bb.top+bb.height*.42));return ad-bd})[0];
+  if(!chosen)return;
+  chosen.tx=Math.max(2,Math.min(92,(clickX-tank.left-chosen.el.offsetWidth*.5)/tank.width*100));
+  chosen.ty=Math.max(8,Math.min(80,(clickY-tank.top-chosen.el.offsetHeight*.42)/tank.height*100));
+  chosen.mode='called';chosen.until=performance.now()+6000;showEmotion(chosen,'♥');void playSfx('tap');
+});
 
 function moodFor(id:string):Mood{const f=store.state.fish.find(x=>x.id===id);if(!f)return'normal';if(store.state.water<45)return'poor-water';if(f.hunger<30)return'hungry';if(f.happiness<35)return'grumpy';if(f.hunger>70&&f.happiness>70&&store.state.water>70)return'happy';return'normal'}
 function showEmotion(m:Motion,symbol:string){const box=m.el.getBoundingClientRect(),el=document.createElement('span');el.className='fish-emotion';el.textContent=symbol;el.style.left=`${box.left+box.width*.55}px`;el.style.top=`${box.top+8}px`;document.body.append(el);setTimeout(()=>el.remove(),1100)}
