@@ -1,7 +1,7 @@
 import {FOODS, SHOP, SPECIES} from './data';
 import {store} from './store';
 import type {FoodId} from './types';
-import {getAudioSettings,setMuted,setVolume,setSfxVolume} from './audio';
+import {getAudioSettings,playSfx,setMuted,setVolume,setSfxVolume} from './audio';
 import {getMission,getProgress,recordAction} from './progression';
 import {fishAsset} from './fishAssets';
 import {DECOR_ASSETS,FOOD_ASSETS} from './itemAssets';
@@ -17,6 +17,17 @@ const toast = (message: string) => {
   document.body.append(el);
   setTimeout(() => el.remove(), 2400);
 };
+function showMissionComplete(title:string,reward:number){
+  document.querySelector('.mission-complete')?.remove();
+  const layer=document.createElement('div');
+  layer.className='mission-complete';
+  const confetti=Array.from({length:18},(_,i)=>`<i style="--angle:${i*20}deg;--delay:${(i%4)*.05}s;--color:${['#f58f79','#f6ca62','#78cfc1','#8dc9e8'][i%4]}"></i>`).join('');
+  layer.innerHTML=`<div class="mission-burst">${confetti}</div><section><small>MISSION COMPLETE!</small><b>${title}</b><span>🪙 <strong>+${reward}</strong> コイン</span></section>`;
+  document.body.append(layer);
+  void playSfx('reward');
+  window.setTimeout(()=>layer.classList.add('leaving'),2200);
+  window.setTimeout(()=>layer.remove(),2700);
+}
 const bar = (value: number) => `<span class="meter"><i style="width:${value}%"></i></span>`;
 
 function fishPanel() {
@@ -75,6 +86,6 @@ window.addEventListener('decorselect',event=>{decorSelected=(event as CustomEven
 window.addEventListener('decor-selection',event=>{decorSelected=(event as CustomEvent<string|null>).detail;if(panel==='decor')render()});
 window.addEventListener('audiochange',()=>{const audio=getAudioSettings(),mute=hud.querySelector<HTMLButtonElement>('[data-mute]'),volume=hud.querySelector<HTMLInputElement>('[data-volume]'),output=volume?.parentElement?.querySelector('output');if(mute){mute.textContent=audio.muted?'🔇':'🔊';mute.ariaLabel=`BGMを${audio.muted?'オン':'オフ'}`}if(volume&&document.activeElement!==volume)volume.value=String(Math.round(audio.volume*100));if(output)output.textContent=`${Math.round(audio.volume*100)}%`});
 window.addEventListener('progresschange',()=>{if(panel==='home')render()});
-window.addEventListener('progressreward',event=>{const detail=(event as CustomEvent<{reward:number;title:string}>).detail;toast(`「${detail.title}」達成！ +${detail.reward} コイン`)});
+window.addEventListener('progressreward',event=>{const detail=(event as CustomEvent<{reward:number;title:string}>).detail;showMissionComplete(detail.title,detail.reward)});
 store.on(render);
 render();
