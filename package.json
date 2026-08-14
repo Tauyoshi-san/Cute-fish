@@ -1,1 +1,1 @@
-{"name":"aqua-evolution","private":true,"version":"0.1.0","type":"module","scripts":{"dev":"vite --open","build":"tsc && vite build","preview":"vite preview --open"},"dependencies":{"phaser":"^3.90.0"},"devDependencies":{"typescript":"^5.7.2","vite":"^6.0.5"}}
+{"name":"aqua-evolution","private":true,"version":"0.1.0","type":"module","scripts":{"dev":"vite --open","build":"tsc && vite build --base=./","preview":"vite preview --open"},"dependencies":{"phaser":"^3.90.0"},"devDependencies":{"typescript":"^5.7.2","vite":"^6.0.5"}}
