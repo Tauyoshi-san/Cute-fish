@@ -179,3 +179,6 @@ body{background:radial-gradient(circle at 48% 15%,#fffdf4 0 24%,#f8eed8 70%,#ead
 
 /* Desktop glass and control panel share one exact vertical equipment bay. */
 @media(min-width:821px){#hud{top:70px;bottom:58px}}
+
+/* The glass and console have their own seals; avoid a redundant shared ghost frame behind them. */
+#aquarium-machine:after{display:none}
