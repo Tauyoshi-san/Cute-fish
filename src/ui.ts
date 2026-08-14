@@ -29,6 +29,7 @@ function showMissionComplete(title:string,reward:number){
   window.setTimeout(()=>layer.remove(),2700);
 }
 const bar = (value: number) => `<span class="meter"><i style="width:${value}%"></i></span>`;
+const coinPrice = (value:number) => `<span class="coin-price">${value}<i aria-hidden="true">🪙</i></span>`;
 
 function fishPanel() {
   const fish = store.state.fish.find(item => item.id === selected) || store.state.fish[0];
@@ -43,7 +44,7 @@ function fishPanel() {
 }
 
 function shopPanel() {
-  return `<div class="console-section"><p class="eyebrow">AQUARIUM SHOP</p><h2>水辺ショップ<small>ごはんと配置アイテム</small></h2><h3>ごはん</h3><div class="shopgrid">${(Object.keys(FOODS) as FoodId[]).map(id => `<button data-buyfood="${id}"><b><img class="shop-thumb" src="${FOOD_ASSETS[id]}" alt="">${FOODS[id].name}</b><span>${FOODS[id].desc}</span><em>${FOODS[id].cost} コイン</em></button>`).join('')}</div><h3>底砂</h3><div class="shopgrid substrate-shop">${(Object.keys(SUBSTRATES) as SubstrateId[]).map(id=>{const item=SUBSTRATES[id],owned=store.state.ownedSubstrates.includes(id),selected=store.state.substrate===id;return `<button data-substrate="${id}" class="${selected?'selected':''}"><b><i class="substrate-swatch substrate-${id}"></i>${item.name}</b><span>${item.desc}</span><em>${selected?'使用中':owned?'選択する':item.cost+' コイン'}</em></button>`}).join('')}</div><h3>水槽アイテム</h3><div class="shopgrid">${SHOP.map(item => `<button data-decor="${item.type}"><b><img class="shop-thumb" src="${DECOR_ASSETS[item.type]}" alt="">${item.name}</b><span>${item.desc}</span><em>${item.cost} コイン</em></button>`).join('')}</div><button class="primary" data-fish>稚魚を迎える · 55 コイン</button></div>`;
+  return `<div class="console-section"><p class="eyebrow">AQUARIUM SHOP</p><h2>水辺ショップ<small>ごはんと配置アイテム</small></h2><h3>ごはん</h3><div class="shopgrid">${(Object.keys(FOODS) as FoodId[]).map(id => `<button data-buyfood="${id}"><b><img class="shop-thumb" src="${FOOD_ASSETS[id]}" alt="">${FOODS[id].name}</b><span>${FOODS[id].desc}</span><em>${coinPrice(FOODS[id].cost)}</em></button>`).join('')}</div><h3>底砂</h3><div class="shopgrid substrate-shop">${(Object.keys(SUBSTRATES) as SubstrateId[]).map(id=>{const item=SUBSTRATES[id],owned=store.state.ownedSubstrates.includes(id),selected=store.state.substrate===id;return `<button data-substrate="${id}" class="${selected?'selected':''}"><b><i class="substrate-swatch substrate-${id}"></i>${item.name}</b><span>${item.desc}</span><em>${selected?'使用中':owned?'選択する':coinPrice(item.cost)}</em></button>`}).join('')}</div><h3>水槽アイテム</h3><div class="shopgrid">${SHOP.map(item => `<button data-decor="${item.type}"><b><img class="shop-thumb" src="${DECOR_ASSETS[item.type]}" alt="">${item.name}</b><span>${item.desc}</span><em>${coinPrice(item.cost)}</em></button>`).join('')}</div><button class="primary" data-fish>稚魚を迎える · ${coinPrice(55)}</button></div>`;
 }
 
 function bookPanel() {
