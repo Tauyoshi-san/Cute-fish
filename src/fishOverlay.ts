@@ -5,7 +5,8 @@ import {playSfx} from './audio';
 
 const layer = document.querySelector<HTMLDivElement>('#fish-overlay')!;
 const cameraStage = document.querySelector<HTMLElement>('#camera-stage')!;
-const bubbleLayer = document.querySelector<HTMLDivElement>('.fx-bubbles')!;
+const backBubbleLayer = document.querySelector<HTMLDivElement>('.fx-bubbles-back')!;
+const frontBubbleLayer = document.querySelector<HTMLDivElement>('.fx-bubbles-front')!;
 const app = document.querySelector<HTMLElement>('#app')!;
 const cinematic = document.querySelector<HTMLElement>('#evolution-cinematic')!;
 type Mode='cruise'|'dash'|'rest'|'explore'|'called';
@@ -41,6 +42,7 @@ function reconcileFish(){const live=new Set(store.state.fish.map(f=>f.id));for(c
 
 let last=performance.now();function animate(now:number){const dt=Math.min(34,now-last)/1000;last=now;const width=layer.clientWidth,height=layer.clientHeight;for(const m of motions.values()){if(now>m.until||Math.hypot(m.tx-m.x,m.ty-m.y)<2)nextTarget(m,now);const dx=m.tx-m.x,dy=m.ty-m.y,dist=Math.max(1,Math.hypot(dx,dy));const speed=m.mode==='dash'?18:m.mode==='rest'?0:m.mode==='explore'?5.5:3.6;m.vx+=(dx/dist*speed-m.vx)*Math.min(1,dt*2.5);m.vy+=(dy/dist*speed-m.vy)*Math.min(1,dt*2.5);m.x=Math.max(2,Math.min(98,m.x+m.vx*dt));m.y=Math.max(8,Math.min(84,m.y+m.vy*dt));if(Math.abs(m.vx)>.3)m.dir=m.vx>0?1:-1;const bob=Math.sin(now/520+m.phase)*(m.mode==='rest'?5:2.5),angle=Math.max(-8,Math.min(8,m.vy*1.1)),x=Math.max(6,Math.min(width-m.el.offsetWidth-6,width*m.x/100)),y=Math.max(6,Math.min(height-m.el.offsetHeight-6,height*m.y/100+bob));m.el.style.transform=`translate3d(${x}px,${y}px,0) rotate(${angle}deg)`;m.el.dataset.mode=m.mode;m.el.style.setProperty('--dir',String(m.dir));m.el.style.setProperty('--tail-speed',m.mode==='dash'?'.22s':m.mode==='rest'?'1.15s':'.55s')}requestAnimationFrame(animate)}
 
-function buildBubbles(){bubbleLayer.innerHTML='';for(let i=0;i<42;i++){const b=document.createElement('i');const size=12+Math.random()*30;b.style.cssText=`--x:${3+Math.random()*94}%;--size:${size}px;--duration:${4+Math.random()*7}s;--delay:${-Math.random()*12}s;--drift:${-38+Math.random()*76}px`;bubbleLayer.append(b)}}
+function fillBubbles(layer:HTMLElement,count:number,minSize:number,maxSize:number){layer.innerHTML='';for(let i=0;i<count;i++){const b=document.createElement('i'),size=minSize+Math.random()*(maxSize-minSize);b.style.cssText=`--x:${3+Math.random()*94}%;--size:${size}px;--duration:${4+Math.random()*7}s;--delay:${-Math.random()*12}s;--drift:${-38+Math.random()*76}px`;layer.append(b)}}
+function buildBubbles(){fillBubbles(backBubbleLayer,28,8,27);fillBubbles(frontBubbleLayer,14,18,46)}
 
 store.on(reconcileFish);reconcileFish();buildBubbles();requestAnimationFrame(animate);
