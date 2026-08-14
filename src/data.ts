@@ -29,5 +29,12 @@ export const SHOP=[
   {type:'filter' as const,name:'アヌビアス',icon:'🌿',cost:180,desc:'岩に根づいた丈夫な広葉水草'},
   {type:'light' as const,name:'水草マット',icon:'🌱',cost:160,desc:'底床に広がる背の低い水草'},
   {type:'vallisneria' as const,name:'テープ水草',icon:'🌿',cost:85,desc:'魚が隠れられる背の高い自然水草'},
-  {type:'basalt' as const,name:'玄武岩セット',icon:'🪨',cost:75,desc:'水槽を引き締める自然な黒い丸石'}
+  {type:'basalt' as const,name:'玄武岩セット',icon:'🪨',cost:75,desc:'水槽を引き締める自然な黒い丸石'},
+  {type:'graniteLarge' as const,name:'大きな花崗岩',icon:'🪨',cost:145,desc:'明るい色の巨大な丸岩'},
+  {type:'slateLarge' as const,name:'大きな積層岩',icon:'🪨',cost:155,desc:'縦に重なる青灰色の大岩'},
+  {type:'sandstoneLarge' as const,name:'大きな砂岩アーチ',icon:'🪨',cost:165,desc:'魚がくぐれる横長の自然岩'},
+  {type:'treeBroadleaf' as const,name:'大きな水中広葉樹',icon:'🌳',cost:220,desc:'丸い樹冠を持つ立派な樹木'},
+  {type:'treeWeeping' as const,name:'大きな枝垂れ樹',icon:'🌳',cost:235,desc:'細い葉が水中に揺れる樹木'},
+  {type:'plantBroadleafLarge' as const,name:'大きな広葉水草',icon:'🌿',cost:135,desc:'前景を豊かにする幅広い水草'},
+  {type:'grassMeadowLarge' as const,name:'大きな水草原',icon:'🌾',cost:145,desc:'背景を覆う背の高い草むら'}
 ];

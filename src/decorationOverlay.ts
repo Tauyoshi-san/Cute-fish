@@ -4,7 +4,7 @@ import {DECOR_ASSETS} from './itemAssets';
 
 const layer=document.querySelector<HTMLDivElement>('#decor-overlay')!;
 const backLayer=document.querySelector<HTMLDivElement>('#decor-overlay-back')!;
-const limits:Record<Decoration['type'],[number,number]>={plant:[.45,2.6],coral:[.45,2.6],stones:[.5,2.8],driftwood:[.5,2.5],crystal:[.55,2.4],castle:[.65,2.4],aerator:[.45,2.8],filter:[.45,2.6],light:[.45,2.8],vallisneria:[.4,3.2],basalt:[.45,3.2]};
+const limits:Record<Decoration['type'],[number,number]>={plant:[.45,2.6],coral:[.45,2.6],stones:[.5,2.8],driftwood:[.5,2.5],crystal:[.55,2.4],castle:[.65,2.4],aerator:[.45,2.8],filter:[.45,2.6],light:[.45,2.8],vallisneria:[.4,3.2],basalt:[.45,3.2],graniteLarge:[.35,3.4],slateLarge:[.35,3.4],sandstoneLarge:[.35,3.4],treeBroadleaf:[.3,3.4],treeWeeping:[.3,3.4],plantBroadleafLarge:[.35,3.4],grassMeadowLarge:[.3,3.4]};
 const nodes=new Map<string,HTMLButtonElement>();
 let selected:string|null=null,editing=false,dragging:string|null=null;
 const clamp=(n:number,min:number,max:number)=>Math.max(min,Math.min(max,n));

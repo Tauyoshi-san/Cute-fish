@@ -83,6 +83,7 @@ body{background:radial-gradient(circle at 48% 15%,#fffdf4 0 24%,#f8eed8 70%,#ead
 @keyframes raySwayA{0%{transform:translateX(-18%) rotate(-7deg) scaleX(.75);opacity:.3}55%{opacity:.75}100%{transform:translateX(32%) rotate(7deg) scaleX(1.2);opacity:.55}}
 @keyframes raySwayB{0%{transform:translateX(24%) rotate(6deg) scaleX(1.15);opacity:.7}100%{transform:translateX(-22%) rotate(-7deg) scaleX(.78);opacity:.3}}
 .tank-decor{filter:drop-shadow(0 4px 3px #174b5155)}
+.tank-decor.decor-graniteLarge,.tank-decor.decor-slateLarge,.tank-decor.decor-sandstoneLarge,.tank-decor.decor-treeBroadleaf,.tank-decor.decor-treeWeeping,.tank-decor.decor-plantBroadleafLarge,.tank-decor.decor-grassMeadowLarge{width:clamp(150px,22vw,310px)}
 .tank-decor:after{content:'';position:absolute;left:22%;right:22%;bottom:-2px;height:7px;border-radius:50%;background:#123b5b38;filter:blur(3px);pointer-events:none}
 
 /* Console-integrated layout editor and fish feeding dialog */
