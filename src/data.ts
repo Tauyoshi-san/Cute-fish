@@ -32,7 +32,8 @@ export const SUBSTRATES:Record<SubstrateId,{name:string;cost:number;desc:string}
 };
 
 export const BACKGROUNDS:Record<BackgroundId,{name:string;cost:number;desc:string;asset:string}>={
-  fancy:{name:'パール・ファンシー',cost:0,desc:'パール光と星のきらめく明るい水景',asset:'/assets/backgrounds/tank-fancy.png'},
+  simple:{name:'シンプル・アクア',cost:0,desc:'明るい水色と光だけの標準的な水槽背景',asset:'/assets/backgrounds/tank-bright-empty.png'},
+  fancy:{name:'パール・ファンシー',cost:145,desc:'パール光と星のきらめく明るい水景',asset:'/assets/backgrounds/tank-fancy.png'},
   fantasy:{name:'夢光ファンタジー',cost:180,desc:'淡い光のアーチが浮かぶ幻想的な水景',asset:'/assets/backgrounds/tank-fantasy.png'},
   rocky:{name:'青岩の峡谷',cost:150,desc:'遠い岩壁に囲まれた爽やかな岩場の水景',asset:'/assets/backgrounds/tank-rocky.png'},
   natural:{name:'水草ナチュラル',cost:135,desc:'水草の気配を感じる穏やかな自然水景',asset:'/assets/backgrounds/tank-natural.png'},
