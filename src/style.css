@@ -234,3 +234,6 @@ body{background:radial-gradient(circle at 48% 15%,#fffdf4 0 24%,#f8eed8 70%,#ead
 
 /* Portrait phones devote roughly 70% of the former tank height to the aquarium. */
 @media(max-width:820px) and (orientation:portrait){#camera-stage{bottom:calc(50vh + 2px)}#hud{height:calc(50vh - 12px)}.decor-toolbar{bottom:calc(50vh + 2px)}}
+
+/* Touch help opens above the console and stays inside the portrait viewport. */
+@media(max-width:820px) and (orientation:portrait){.help-tip:after,.resources>.help-tip:first-child:after,.resources>.help-tip:nth-child(2):after{position:fixed;left:12px;right:12px;top:auto;bottom:calc(50vh + 8px);width:auto;transform:translateY(4px)}.help-tip:hover:after,.help-tip:focus-visible:after,.help-tip:focus-within:after,.resources>.help-tip:first-child:hover:after,.resources>.help-tip:first-child:focus-visible:after,.resources>.help-tip:nth-child(2):hover:after,.resources>.help-tip:nth-child(2):focus-visible:after{transform:translateY(0)}}

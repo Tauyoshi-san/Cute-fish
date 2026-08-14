@@ -5,7 +5,7 @@ export const FISH_ASSETS:Record<SpeciesId,string>={
   medaka:assetUrl('assets/sprites/fish/seeds/medaka-v2.png'),
   sunfin:assetUrl('assets/sprites/fish/seeds/sunfin-v2.png'),
   mossback:assetUrl('assets/sprites/fish/seeds/mossback-v2.png'),
-  neon:assetUrl('assets/sprites/fish/seeds/neon-v2.png'),
+  neon:assetUrl('assets/sprites/fish/seeds/neon-v3.png'),
   solarcrown:assetUrl('assets/sprites/fish/seeds/solarcrown.png'),
   grovewhale:assetUrl('assets/sprites/fish/seeds/grovewhale.png'),
   astral:assetUrl('assets/sprites/fish/seeds/unicornloop.png'),
