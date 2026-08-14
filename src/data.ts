@@ -1,4 +1,4 @@
-import type {FoodId,SpeciesId} from './types';
+import type {FoodId,SpeciesId,SubstrateId} from './types';
 
 export const FOODS:Record<FoodId,{name:string;icon:string;color:number;cost:number;desc:string}>={
   plankton:{name:'みどりのプランクトン',icon:'✦',color:0x9de36f,cost:8,desc:'自然派。コケ系の進化に。'},
@@ -16,6 +16,13 @@ export const SPECIES:Record<SpeciesId,{name:string;value:number;color:number;acc
   solarcrown:{name:'サン・クラウンフィン',value:480,color:0xffa53f,accent:0x63d6ae,hint:'たんぱくキューブで育った第3段階',discoveryHint:'暖色の第2段階に力強いごはんを重ねよう',stage:3},
   grovewhale:{name:'花森のグロウフィン',value:520,color:0x76c99a,accent:0xf4c8d7,hint:'植物とミネラルに育まれた第3段階',discoveryHint:'植物系の第2段階にミネラルと水草を',stage:3},
   astral:{name:'ユニコーン・ループフィン',value:700,color:0xf4e8c7,accent:0xb7a4d8,hint:'星くずから生まれる伝説の第3段階',discoveryHint:'リボンの魚に星くずと最高の水質を',stage:3}
+};
+
+export const SUBSTRATES:Record<SubstrateId,{name:string;cost:number;desc:string}>={
+  pastel:{name:'パステル砂利',cost:0,desc:'最初から使える明るい色の丸砂利'},
+  whiteSand:{name:'ミルクホワイトサンド',cost:120,desc:'水槽を明るく見せる細かな白砂'},
+  riverPebble:{name:'ナチュラル川砂利',cost:145,desc:'自然な茶色と翡翠色の丸砂利'},
+  blackGravel:{name:'ナイトブラック砂利',cost:165,desc:'魚の色が映える落ち着いた黒砂利'}
 };
 
 export const SHOP=[
