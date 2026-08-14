@@ -1,5 +1,5 @@
 import type {Decoration,FoodId,GameState,SpeciesId} from './types';
-const key='aqua-alter-save-v3';
+const key='aqua-alter-save-v4';
 const SAVE_VERSION=5,clamp=(n:number,min:number,max:number)=>Math.max(min,Math.min(max,n));
 const FOOD_IDS:FoodId[]=['plankton','berry','stardust','protein','mineral'];
 const SPECIES_IDS:SpeciesId[]=['medaka','sunfin','mossback','neon','solarcrown','grovewhale','astral'];
@@ -20,7 +20,7 @@ export class Store{state:GameState;listeners=new Set<()=>void>();constructor(){c
  grantCoins(amount:number){this.state.coins+=Math.max(0,Math.floor(amount));this.emit()}
  sell(id:string){const i=this.state.fish.findIndex(f=>f.id===id);if(i<0||this.state.fish.length===1)return false;const {SPECIES}=requireData();this.state.coins+=SPECIES[this.state.fish[i].species].value;this.state.fish.splice(i,1);this.emit();return true}
  buyFish(){if(this.state.coins<55||this.state.fish.length>=8)return false;this.state.coins-=55;this.state.fish.push({id:crypto.randomUUID(),name:['ナギ','ソラ','アオ','キラ'][this.state.fish.length%4],species:'medaka',x:.25+Math.random()*.5,y:.3+Math.random()*.35,dir:Math.random()>.5?1:-1,hunger:70,happiness:75,foods:[],bornAt:Date.now()});this.emit();return true}
- reward(food?:FoodId){if(food)this.state.inventory[food]++;else this.state.coins+=40;this.emit()}}
+ reward(food?:FoodId){if(food)this.state.inventory[food]++;else this.state.coins+=150;this.emit()}}
 import {SPECIES as speciesData} from './data';function requireData(){return{SPECIES:speciesData}}
 export const store=new Store();
 store.advanceTime();
