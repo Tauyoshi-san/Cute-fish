@@ -8,14 +8,14 @@ export const FOODS:Record<FoodId,{name:string;icon:string;color:number;cost:numb
   mineral:{name:'ミネラルゼリー',icon:'●',color:0x70d9dc,cost:26,desc:'大きな体と自然系の進化を育むゼリー。'}
 };
 
-export const SPECIES:Record<SpeciesId,{name:string;value:number;color:number;accent:number;hint:string;stage:1|2|3}>={
-  medaka:{name:'はじまりメダカ',value:35,color:0xf4d79b,accent:0x74d5bd,hint:'いろいろなごはんを試してみよう',stage:1},
-  sunfin:{name:'ヒレアカリ',value:95,color:0xffa047,accent:0x78d2b5,hint:'たんぱくキューブでさらに大きなヒレへ',stage:2},
-  mossback:{name:'モスノセ',value:110,color:0x92d3ae,accent:0xd5cf68,hint:'ミネラルゼリーと水草でさらに大きく',stage:2},
-  neon:{name:'ネオンリボン',value:260,color:0x35bde0,accent:0xff796c,hint:'星くずと最高の水質で伝説の姿へ',stage:2},
-  solarcrown:{name:'サン・クラウンフィン',value:480,color:0xffa53f,accent:0x63d6ae,hint:'たんぱくキューブで育った第3段階',stage:3},
-  grovewhale:{name:'花森のグロウフィン',value:520,color:0x76c99a,accent:0xf4c8d7,hint:'植物とミネラルに育まれた第3段階',stage:3},
-  astral:{name:'ユニコーン・ループフィン',value:700,color:0xf4e8c7,accent:0xb7a4d8,hint:'星くずから生まれる伝説の第3段階',stage:3}
+export const SPECIES:Record<SpeciesId,{name:string;value:number;color:number;accent:number;hint:string;discoveryHint:string;stage:1|2|3}>={
+  medaka:{name:'はじまりメダカ',value:35,color:0xf4d79b,accent:0x74d5bd,hint:'いろいろなごはんを試してみよう',discoveryHint:'ショップで稚魚を迎えてみよう',stage:1},
+  sunfin:{name:'ヒレアカリ',value:95,color:0xffa047,accent:0x78d2b5,hint:'たんぱくキューブでさらに大きなヒレへ',discoveryHint:'暖色の実を何度か食べさせてみよう',stage:2},
+  mossback:{name:'モスノセ',value:110,color:0x92d3ae,accent:0xd5cf68,hint:'ミネラルゼリーと水草でさらに大きく',discoveryHint:'緑のごはんと水草の多い環境が鍵',stage:2},
+  neon:{name:'ネオンリボン',value:260,color:0x35bde0,accent:0xff796c,hint:'星くずと最高の水質で伝説の姿へ',discoveryHint:'3種類のごはんと輝く結晶を試そう',stage:2},
+  solarcrown:{name:'サン・クラウンフィン',value:480,color:0xffa53f,accent:0x63d6ae,hint:'たんぱくキューブで育った第3段階',discoveryHint:'暖色の第2段階に力強いごはんを重ねよう',stage:3},
+  grovewhale:{name:'花森のグロウフィン',value:520,color:0x76c99a,accent:0xf4c8d7,hint:'植物とミネラルに育まれた第3段階',discoveryHint:'植物系の第2段階にミネラルと水草を',stage:3},
+  astral:{name:'ユニコーン・ループフィン',value:700,color:0xf4e8c7,accent:0xb7a4d8,hint:'星くずから生まれる伝説の第3段階',discoveryHint:'リボンの魚に星くずと最高の水質を',stage:3}
 };
 
 export const SHOP=[
