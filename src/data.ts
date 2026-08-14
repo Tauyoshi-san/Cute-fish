@@ -23,5 +23,7 @@ export const SHOP=[
   {type:'castle' as const,name:'石のアーチ',icon:'▱',cost:130,desc:'魚の幸福度を高める'},
   {type:'aerator' as const,name:'川石セット',icon:'🪨',cost:110,desc:'自然な色合いの丸い川石'},
   {type:'filter' as const,name:'アヌビアス',icon:'🌿',cost:180,desc:'岩に根づいた丈夫な広葉水草'},
-  {type:'light' as const,name:'水草マット',icon:'🌱',cost:160,desc:'底床に広がる背の低い水草'}
+  {type:'light' as const,name:'水草マット',icon:'🌱',cost:160,desc:'底床に広がる背の低い水草'},
+  {type:'vallisneria' as const,name:'テープ水草',icon:'🌿',cost:85,desc:'魚が隠れられる背の高い自然水草'},
+  {type:'basalt' as const,name:'玄武岩セット',icon:'🪨',cost:75,desc:'水槽を引き締める自然な黒い丸石'}
 ];

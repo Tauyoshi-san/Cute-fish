@@ -3,8 +3,8 @@ import type {Decoration} from './types';
 
 const layer=document.querySelector<HTMLDivElement>('#decor-overlay')!;
 const backLayer=document.querySelector<HTMLDivElement>('#decor-overlay-back')!;
-const assets:Record<Decoration['type'],string>={plant:'/assets/decorations/items/plant-mint.png',coral:'/assets/decorations/items/plant-coral.png',stones:'/assets/decorations/items/stones-jade.png',driftwood:'/assets/decorations/items/driftwood.png',crystal:'/assets/decorations/items/crystal-violet.png',castle:'/assets/decorations/items/stone-arch.png',aerator:'/assets/decorations/items/aerator.png',filter:'/assets/decorations/items/filter-wide.png',light:'/assets/decorations/items/light-bar.png'};
-const limits:Record<Decoration['type'],[number,number]>={plant:[.45,2.6],coral:[.45,2.6],stones:[.5,2.8],driftwood:[.5,2.5],crystal:[.55,2.4],castle:[.65,2.4],aerator:[.45,2.8],filter:[.45,2.6],light:[.45,2.8]};
+const assets:Record<Decoration['type'],string>={plant:'/assets/decorations/items/plant-mint.png',coral:'/assets/decorations/items/plant-coral.png',stones:'/assets/decorations/items/stones-jade.png',driftwood:'/assets/decorations/items/driftwood.png',crystal:'/assets/decorations/items/crystal-violet.png',castle:'/assets/decorations/items/stone-arch.png',aerator:'/assets/decorations/items/aerator.png',filter:'/assets/decorations/items/filter-wide.png',light:'/assets/decorations/items/light-bar.png',vallisneria:'/assets/decorations/items/vallisneria.png',basalt:'/assets/decorations/items/basalt-rocks.png'};
+const limits:Record<Decoration['type'],[number,number]>={plant:[.45,2.6],coral:[.45,2.6],stones:[.5,2.8],driftwood:[.5,2.5],crystal:[.55,2.4],castle:[.65,2.4],aerator:[.45,2.8],filter:[.45,2.6],light:[.45,2.8],vallisneria:[.4,3.2],basalt:[.45,3.2]};
 const nodes=new Map<string,HTMLButtonElement>();
 let selected:string|null=null,editing=false,dragging:string|null=null;
 const clamp=(n:number,min:number,max:number)=>Math.max(min,Math.min(max,n));
