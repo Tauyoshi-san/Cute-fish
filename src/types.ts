@@ -1,5 +1,5 @@
 export type FoodId='plankton'|'berry'|'stardust'|'protein'|'mineral';
-export type SpeciesId='medaka'|'sunfin'|'mossback'|'neon'|'solarcrown'|'grovewhale'|'astral';
+export type SpeciesId='medaka'|'sunfin'|'mossback'|'neon'|'solarcrown'|'grovewhale'|'astral'|'saplingback'|'greattreeleviathan'|'stonecalf'|'cragwhale'|'petalbloom'|'floralqueen';
 export type SubstrateId='pastel'|'whiteSand'|'riverPebble'|'blackGravel';
 export type DecorationType='plant'|'coral'|'stones'|'driftwood'|'crystal'|'castle'|'aerator'|'filter'|'light'|'vallisneria'|'basalt'|'graniteLarge'|'slateLarge'|'sandstoneLarge'|'treeBroadleaf'|'treeWeeping'|'plantBroadleafLarge'|'grassMeadowLarge';
 export interface Fish{id:string;name:string;species:SpeciesId;x:number;y:number;dir:1|-1;hunger:number;happiness:number;foods:FoodId[];bornAt:number}

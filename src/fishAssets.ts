@@ -7,7 +7,13 @@ export const FISH_ASSETS:Record<SpeciesId,string>={
   neon:'/assets/sprites/fish/seeds/neon-v2.png',
   solarcrown:'/assets/sprites/fish/seeds/solarcrown.png',
   grovewhale:'/assets/sprites/fish/seeds/grovewhale.png',
-  astral:'/assets/sprites/fish/seeds/unicornloop.png'
+  astral:'/assets/sprites/fish/seeds/unicornloop.png',
+  saplingback:'/assets/sprites/fish/seeds/saplingback.png',
+  greattreeleviathan:'/assets/sprites/fish/seeds/greattreeleviathan.png',
+  stonecalf:'/assets/sprites/fish/seeds/stonecalf.png',
+  cragwhale:'/assets/sprites/fish/seeds/cragwhale.png',
+  petalbloom:'/assets/sprites/fish/seeds/petalbloom.png',
+  floralqueen:'/assets/sprites/fish/seeds/floralqueen.png'
 };
 
 export function fishAsset(species:SpeciesId){return FISH_ASSETS[species]}

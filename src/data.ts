@@ -15,7 +15,13 @@ export const SPECIES:Record<SpeciesId,{name:string;value:number;color:number;acc
   neon:{name:'ネオンリボン',value:260,color:0x35bde0,accent:0xff796c,hint:'星くずと最高の水質で伝説の姿へ',discoveryHint:'3種類のごはんと輝く結晶を試そう',stage:2},
   solarcrown:{name:'サン・クラウンフィン',value:480,color:0xffa53f,accent:0x63d6ae,hint:'たんぱくキューブで育った第3段階',discoveryHint:'暖色の第2段階に力強いごはんを重ねよう',stage:3},
   grovewhale:{name:'花森のグロウフィン',value:520,color:0x76c99a,accent:0xf4c8d7,hint:'植物とミネラルに育まれた第3段階',discoveryHint:'植物系の第2段階にミネラルと水草を',stage:3},
-  astral:{name:'ユニコーン・ループフィン',value:700,color:0xf4e8c7,accent:0xb7a4d8,hint:'星くずから生まれる伝説の第3段階',discoveryHint:'リボンの魚に星くずと最高の水質を',stage:3}
+  astral:{name:'ユニコーン・ループフィン',value:700,color:0xf4e8c7,accent:0xb7a4d8,hint:'星くずから生まれる伝説の第3段階',discoveryHint:'リボンの魚に星くずと最高の水質を',stage:3},
+  saplingback:{name:'若樹のモリノセ',value:360,color:0xa9e58c,accent:0xc98a4a,hint:'若木を背負い始めた希少な第2段階',discoveryHint:'緑とミネラルのごはん、水草4個、大きな木1本、水質90以上',stage:2},
+  greattreeleviathan:{name:'大樹海のタイジュオウ',value:980,color:0x7bd36a,accent:0xb87a42,hint:'背中に大樹の島を育てた巨大な第3段階',discoveryHint:'若樹の魚にさらに緑とミネラル。水草6個、大きな木2本、水質94以上',stage:3},
+  stonecalf:{name:'岩甲のイワコ',value:390,color:0x75d5d4,accent:0x77858b,hint:'丸い岩甲をまとった希少なクジラ魚',discoveryHint:'ミネラルとたんぱくを各4回、大岩を含む岩4個、水質88以上',stage:2},
+  cragwhale:{name:'巨巌のガンオウクジラ',value:1050,color:0x62cbd0,accent:0x687881,hint:'崖のような岩石をまとう巨大な第3段階',discoveryHint:'岩甲の魚にミネラル9回・たんぱく8回。岩7個、水質92以上',stage:3},
+  petalbloom:{name:'花衣のペタリナ',value:420,color:0xffb5b9,accent:0xbca8e8,hint:'花びらのひれをまとった希少な第2段階',discoveryHint:'木の実2回と星くず5回、花に似合う装飾4個、水質94以上',stage:2},
+  floralqueen:{name:'万花のフロレシア',value:1120,color:0xffa6ad,accent:0x9fd9bc,hint:'全身に花を咲かせる巨大で優美な第3段階',discoveryHint:'花衣の魚に木の実5回・星くず10回。花の装飾6個、水質97以上',stage:3}
 };
 
 export const SUBSTRATES:Record<SubstrateId,{name:string;cost:number;desc:string}>={
