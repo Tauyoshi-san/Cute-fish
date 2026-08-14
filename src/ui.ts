@@ -24,7 +24,7 @@ function showMissionComplete(title:string,reward:number){
   const confetti=Array.from({length:18},(_,i)=>`<i style="--angle:${i*20}deg;--delay:${(i%4)*.05}s;--color:${['#f58f79','#f6ca62','#78cfc1','#8dc9e8'][i%4]}"></i>`).join('');
   layer.innerHTML=`<div class="mission-burst">${confetti}</div><section><small>MISSION COMPLETE!</small><b>${title}</b><span>🪙 <strong>+${reward}</strong> コイン</span></section>`;
   document.body.append(layer);
-  void playSfx('reward');
+  void playSfx('missionComplete');
   window.setTimeout(()=>layer.classList.add('leaving'),2200);
   window.setTimeout(()=>layer.remove(),2700);
 }
@@ -72,12 +72,12 @@ function bind(root:ParentNode=hud) {
   root.querySelector<HTMLElement>('[data-mute]')?.addEventListener('click',()=>void setMuted(!getAudioSettings().muted));
   root.querySelector<HTMLInputElement>('[data-volume]')?.addEventListener('input',e=>{const input=e.currentTarget as HTMLInputElement;setVolume(Number(input.value)/100);const output=input.parentElement?.querySelector('output');if(output)output.textContent=`${input.value}%`});
   root.querySelector<HTMLInputElement>('[data-sfx-volume]')?.addEventListener('input',e=>{const input=e.currentTarget as HTMLInputElement;setSfxVolume(Number(input.value)/100);const output=input.parentElement?.querySelector('output');if(output)output.textContent=`${input.value}%`});
-  root.querySelector('[data-clean]')?.addEventListener('click', () => { if(!store.state.cleanSpots)return;store.clean();recordAction('clean');toast('水槽がきれいになった！ +12 コイン'); });
-  root.querySelectorAll<HTMLElement>('[data-food]').forEach(button => button.onclick = () => { const fishId=selected!,food=button.dataset.food as FoodId,origin=button.getBoundingClientRect(),evolved=store.feed(fishId,food);if(evolved===null)return;recordAction('feed');document.querySelector('.fish-dialog')?.remove();requestAnimationFrame(()=>window.dispatchEvent(new CustomEvent('feed-effect',{detail:{fishId,food,origin}})));if(evolved)toast(`進化！ ${SPECIES[evolved].name} になった`);setTimeout(()=>openFishDialog(fishId),1450); });
+  root.querySelector('[data-clean]')?.addEventListener('click', () => { if(!store.state.cleanSpots)return;store.clean();void playSfx('cleanSwish');recordAction('clean');toast('水槽がきれいになった！ +12 コイン'); });
+  root.querySelectorAll<HTMLElement>('[data-food]').forEach(button => button.onclick = () => { const fishId=selected!,food=button.dataset.food as FoodId,origin=button.getBoundingClientRect(),evolved=store.feed(fishId,food);if(evolved===null){void playSfx('fail');return}void playSfx('feedToss');recordAction('feed');document.querySelector('.fish-dialog')?.remove();requestAnimationFrame(()=>window.dispatchEvent(new CustomEvent('feed-effect',{detail:{fishId,food,origin}})));if(evolved)toast(`進化！ ${SPECIES[evolved].name} になった`);setTimeout(()=>openFishDialog(fishId),1450); });
   root.querySelector('.sell')?.addEventListener('click', () => { if (selected && store.sell(selected)) { selected = store.state.fish[0]?.id; document.querySelector('.fish-dialog')?.remove(); toast('新しい飼い主へ送り出しました'); } });
-  root.querySelectorAll<HTMLElement>('[data-buyfood]').forEach(button => button.onclick = () => { const id = button.dataset.buyfood as FoodId; if(store.buyFood(id, FOODS[id].cost)){recordAction('buy');toast(`${FOODS[id].name}を購入`)}else toast('コインが足りません'); });
-  root.querySelectorAll<HTMLElement>('[data-decor]').forEach(button => button.onclick = () => { const item = SHOP.find(value => value.type === button.dataset.decor)!; if(store.addDecor(item.type, item.cost)){recordAction('buy');toast(`${item.name}を設置しました`)}else toast('コインが足りません'); });
-  root.querySelector('[data-fish]')?.addEventListener('click', () => {if(store.buyFish()){recordAction('buy');toast('新しい稚魚が仲間入り！')}else toast('コイン不足、または水槽が満員です')});
+  root.querySelectorAll<HTMLElement>('[data-buyfood]').forEach(button => button.onclick = () => { const id = button.dataset.buyfood as FoodId; if(store.buyFood(id, FOODS[id].cost)){void playSfx('buySuccess');recordAction('buy');toast(`${FOODS[id].name}を購入`)}else{void playSfx('fail');toast('コインが足りません')} });
+  root.querySelectorAll<HTMLElement>('[data-decor]').forEach(button => button.onclick = () => { const item = SHOP.find(value => value.type === button.dataset.decor)!; if(store.addDecor(item.type, item.cost)){void playSfx('buySuccess');recordAction('buy');toast(`${item.name}を設置しました`)}else{void playSfx('fail');toast('コインが足りません')} });
+  root.querySelector('[data-fish]')?.addEventListener('click', () => {if(store.buyFish()){void playSfx('fishArrive');recordAction('buy');toast('新しい稚魚が仲間入り！')}else{void playSfx('fail');toast('コイン不足、または水槽が満員です')}});
   root.querySelector('[data-ad]')?.addEventListener('click', () => { const overlay = document.createElement('div'); overlay.className = 'ad'; overlay.innerHTML = '<div><small>REWARD PREVIEW</small><b>水辺からの贈りもの</b><span>広告SDK接続前のデモです</span><button>受け取る · +40 コイン</button></div>'; document.body.append(overlay); overlay.querySelector('button')!.onclick = () => { store.reward(); overlay.remove(); toast('ごほうび +40 コイン'); }; });
 }
 
@@ -86,6 +86,7 @@ window.addEventListener('decorselect',event=>{decorSelected=(event as CustomEven
 window.addEventListener('decor-selection',event=>{decorSelected=(event as CustomEvent<string|null>).detail;if(panel==='decor')render()});
 window.addEventListener('audiochange',()=>{const audio=getAudioSettings(),mute=hud.querySelector<HTMLButtonElement>('[data-mute]'),volume=hud.querySelector<HTMLInputElement>('[data-volume]'),output=volume?.parentElement?.querySelector('output');if(mute){mute.textContent=audio.muted?'🔇':'🔊';mute.ariaLabel=`BGMを${audio.muted?'オン':'オフ'}`}if(volume&&document.activeElement!==volume)volume.value=String(Math.round(audio.volume*100));if(output)output.textContent=`${Math.round(audio.volume*100)}%`});
 window.addEventListener('progresschange',()=>{if(panel==='home')render()});
+window.addEventListener('missionprogress',()=>void playSfx('missionStep'));
 window.addEventListener('progressreward',event=>{const detail=(event as CustomEvent<{reward:number;title:string}>).detail;showMissionComplete(detail.title,detail.reward)});
 store.on(render);
 render();
