@@ -1,4 +1,4 @@
-import type {FoodId,SpeciesId,SubstrateId} from './types';
+import type {BackgroundId,FoodId,SpeciesId,SubstrateId} from './types';
 
 export const FOODS:Record<FoodId,{name:string;icon:string;color:number;cost:number;desc:string}>={
   plankton:{name:'みどりのプランクトン',icon:'✦',color:0x9de36f,cost:8,desc:'自然派。コケ系の進化に。'},
@@ -29,6 +29,15 @@ export const SUBSTRATES:Record<SubstrateId,{name:string;cost:number;desc:string}
   whiteSand:{name:'ミルクホワイトサンド',cost:120,desc:'水槽を明るく見せる細かな白砂'},
   riverPebble:{name:'ナチュラル川砂利',cost:145,desc:'自然な茶色と翡翠色の丸砂利'},
   blackGravel:{name:'ナイトブラック砂利',cost:165,desc:'魚の色が映える落ち着いた黒砂利'}
+};
+
+export const BACKGROUNDS:Record<BackgroundId,{name:string;cost:number;desc:string;asset:string}>={
+  fancy:{name:'パール・ファンシー',cost:0,desc:'パール光と星のきらめく明るい水景',asset:'/assets/backgrounds/tank-fancy.png'},
+  fantasy:{name:'夢光ファンタジー',cost:180,desc:'淡い光のアーチが浮かぶ幻想的な水景',asset:'/assets/backgrounds/tank-fantasy.png'},
+  rocky:{name:'青岩の峡谷',cost:150,desc:'遠い岩壁に囲まれた爽やかな岩場の水景',asset:'/assets/backgrounds/tank-rocky.png'},
+  natural:{name:'水草ナチュラル',cost:135,desc:'水草の気配を感じる穏やかな自然水景',asset:'/assets/backgrounds/tank-natural.png'},
+  river:{name:'きらめき河川',cost:165,desc:'横へ流れる光が涼しい河川の水景',asset:'/assets/backgrounds/tank-river.png'},
+  lake:{name:'静光の湖',cost:170,desc:'静かな水面と深い青を楽しむ湖の水景',asset:'/assets/backgrounds/tank-lake.png'}
 };
 
 export const SHOP=[

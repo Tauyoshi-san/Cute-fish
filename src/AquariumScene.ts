@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { store } from './store';
-import { SPECIES } from './data';
+import { BACKGROUNDS, SPECIES } from './data';
+import type { BackgroundId } from './types';
 
 type FishView = {
   sprite: Phaser.GameObjects.Image;
@@ -15,10 +16,12 @@ type FishView = {
 export class AquariumScene extends Phaser.Scene {
   views = new Map<string, FishView>();
   decor = new Map<string, Phaser.GameObjects.Container>();
+  tankBackground?: Phaser.GameObjects.Image;
+  activeBackground?: BackgroundId;
 
   constructor() { super('aquarium'); }
 
-  preload() { this.load.image('tank-background', '/assets/backgrounds/tank-bright-empty.png'); }
+  preload() { for(const [id,item] of Object.entries(BACKGROUNDS))this.load.image(`tank-background-${id}`,item.asset); }
 
   create() {
     this.cameras.main.setBackgroundColor('#073f4b');
@@ -37,8 +40,10 @@ export class AquariumScene extends Phaser.Scene {
 
   drawTank() {
     const w = this.scale.width, h = this.scale.height;
-    const tank = this.add.image(w / 2, h / 2, 'tank-background');
+    const tank = this.add.image(w / 2, h / 2, `tank-background-${store.state.background}`);
     tank.setScale(Math.max(w / tank.width, h / tank.height)).setDepth(-2);
+    this.tankBackground=tank;
+    this.activeBackground=store.state.background;
     const bg = this.add.graphics();
     bg.fillStyle(0x8adbe6, .025).fillRect(0, 0, w, h);
     this.add.particles(0, 0, 'bubble', { x: { min: 0, max: w }, y: h * .82, lifespan: { min: 4500, max: 9000 }, speedY: { min: -48, max: -18 }, scale: { start: 1.35, end: .12 }, alpha: { start: .35, end: 0 }, frequency: 420, quantity: 1, blendMode: 'ADD' });
@@ -84,6 +89,7 @@ export class AquariumScene extends Phaser.Scene {
   }
 
   update(_: number, dt: number) {
+    if(this.tankBackground&&this.activeBackground!==store.state.background){this.activeBackground=store.state.background;this.tankBackground.setTexture(`tank-background-${this.activeBackground}`)}
     for (const view of this.views.values()) {
       if (Phaser.Math.Distance.Between(view.sprite.x, view.sprite.y, view.targetX, view.targetY) < 18) {
         view.targetX = Phaser.Math.Between(80, this.scale.width - 80);
