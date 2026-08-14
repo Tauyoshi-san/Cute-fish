@@ -1,4 +1,5 @@
 import type {BackgroundId,FoodId,SpeciesId,SubstrateId} from './types';
+import {assetUrl} from './assetUrl';
 
 export const FOODS:Record<FoodId,{name:string;icon:string;color:number;cost:number;desc:string}>={
   plankton:{name:'みどりのプランクトン',icon:'✦',color:0x9de36f,cost:8,desc:'自然派。コケ系の進化に。'},
@@ -32,13 +33,13 @@ export const SUBSTRATES:Record<SubstrateId,{name:string;cost:number;desc:string}
 };
 
 export const BACKGROUNDS:Record<BackgroundId,{name:string;cost:number;desc:string;asset:string}>={
-  simple:{name:'シンプル・アクア',cost:0,desc:'明るい水色と光だけの標準的な水槽背景',asset:'/assets/backgrounds/tank-bright-empty.png'},
-  fancy:{name:'パール・ファンシー',cost:145,desc:'パール光と星のきらめく明るい水景',asset:'/assets/backgrounds/tank-fancy.png'},
-  fantasy:{name:'夢光ファンタジー',cost:180,desc:'淡い光のアーチが浮かぶ幻想的な水景',asset:'/assets/backgrounds/tank-fantasy.png'},
-  rocky:{name:'青岩の峡谷',cost:150,desc:'遠い岩壁に囲まれた爽やかな岩場の水景',asset:'/assets/backgrounds/tank-rocky.png'},
-  natural:{name:'水草ナチュラル',cost:135,desc:'水草の気配を感じる穏やかな自然水景',asset:'/assets/backgrounds/tank-natural.png'},
-  river:{name:'きらめき河川',cost:165,desc:'横へ流れる光が涼しい河川の水景',asset:'/assets/backgrounds/tank-river.png'},
-  lake:{name:'静光の湖',cost:170,desc:'静かな水面と深い青を楽しむ湖の水景',asset:'/assets/backgrounds/tank-lake.png'}
+  simple:{name:'シンプル・アクア',cost:0,desc:'明るい水色と光だけの標準的な水槽背景',asset:assetUrl('assets/backgrounds/tank-bright-empty.png')},
+  fancy:{name:'パール・ファンシー',cost:145,desc:'パール光と星のきらめく明るい水景',asset:assetUrl('assets/backgrounds/tank-fancy.png')},
+  fantasy:{name:'夢光ファンタジー',cost:180,desc:'淡い光のアーチが浮かぶ幻想的な水景',asset:assetUrl('assets/backgrounds/tank-fantasy.png')},
+  rocky:{name:'青岩の峡谷',cost:150,desc:'遠い岩壁に囲まれた爽やかな岩場の水景',asset:assetUrl('assets/backgrounds/tank-rocky.png')},
+  natural:{name:'水草ナチュラル',cost:135,desc:'水草の気配を感じる穏やかな自然水景',asset:assetUrl('assets/backgrounds/tank-natural.png')},
+  river:{name:'きらめき河川',cost:165,desc:'横へ流れる光が涼しい河川の水景',asset:assetUrl('assets/backgrounds/tank-river.png')},
+  lake:{name:'静光の湖',cost:170,desc:'静かな水面と深い青を楽しむ湖の水景',asset:assetUrl('assets/backgrounds/tank-lake.png')}
 };
 
 export const SHOP=[
