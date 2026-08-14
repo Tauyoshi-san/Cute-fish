@@ -3,15 +3,19 @@ import type {FoodId,SpeciesId} from './types';
 export const FOODS:Record<FoodId,{name:string;icon:string;color:number;cost:number;desc:string}>={
   plankton:{name:'みどりのプランクトン',icon:'✦',color:0x9de36f,cost:8,desc:'自然派。コケ系の進化に。'},
   berry:{name:'サンベリー',icon:'●',color:0xff806e,cost:14,desc:'元気いっぱい。暖色の進化に。'},
-  stardust:{name:'星くずフード',icon:'★',color:0xe9d8ff,cost:30,desc:'珍しい魚を育む特別食。'}
+  stardust:{name:'星くずフード',icon:'★',color:0xe9d8ff,cost:30,desc:'珍しい魚を育む特別食。'},
+  protein:{name:'たんぱくキューブ',icon:'◆',color:0xffb45f,cost:22,desc:'力強いヒレの成長を助けるごはん。'},
+  mineral:{name:'ミネラルゼリー',icon:'●',color:0x70d9dc,cost:26,desc:'大きな体と自然系の進化を育むゼリー。'}
 };
 
-export const SPECIES:Record<SpeciesId,{name:string;value:number;color:number;accent:number;hint:string}>={
-  medaka:{name:'はじまりメダカ',value:35,color:0xf4d79b,accent:0x74d5bd,hint:'いろいろなごはんを試してみよう'},
-  sunfin:{name:'ヒレアカリ',value:95,color:0xffa047,accent:0x78d2b5,hint:'サンベリーを好むようだ'},
-  mossback:{name:'モスノセ',value:110,color:0x92d3ae,accent:0xd5cf68,hint:'植物の多い水槽で発見'},
-  neon:{name:'ネオンリボン',value:260,color:0x35bde0,accent:0xff796c,hint:'3種のごはんと結晶が鍵'},
-  astral:{name:'アストラル・ループフィン',value:700,color:0xf4e8c7,accent:0xb7a4d8,hint:'伝説。星くずと最高の環境を'}
+export const SPECIES:Record<SpeciesId,{name:string;value:number;color:number;accent:number;hint:string;stage:1|2|3}>={
+  medaka:{name:'はじまりメダカ',value:35,color:0xf4d79b,accent:0x74d5bd,hint:'いろいろなごはんを試してみよう',stage:1},
+  sunfin:{name:'ヒレアカリ',value:95,color:0xffa047,accent:0x78d2b5,hint:'たんぱくキューブでさらに大きなヒレへ',stage:2},
+  mossback:{name:'モスノセ',value:110,color:0x92d3ae,accent:0xd5cf68,hint:'ミネラルゼリーと水草でさらに大きく',stage:2},
+  neon:{name:'ネオンリボン',value:260,color:0x35bde0,accent:0xff796c,hint:'星くずと最高の水質で伝説の姿へ',stage:2},
+  solarcrown:{name:'サン・クラウンフィン',value:480,color:0xffa53f,accent:0x63d6ae,hint:'たんぱくキューブで育った第3段階',stage:3},
+  grovewhale:{name:'花森のグロウフィン',value:520,color:0x76c99a,accent:0xf4c8d7,hint:'植物とミネラルに育まれた第3段階',stage:3},
+  astral:{name:'ユニコーン・ループフィン',value:700,color:0xf4e8c7,accent:0xb7a4d8,hint:'星くずから生まれる伝説の第3段階',stage:3}
 };
 
 export const SHOP=[
